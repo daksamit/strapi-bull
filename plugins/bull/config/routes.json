@@ -1,0 +1,60 @@
+{
+  "routes": [
+    {
+      "method": "GET",
+      "path": "/",
+      "handler": "Bull.overview",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/:queue/:type",
+      "handler": "Bull.find",
+      "config": {
+        "policies": ["plugins::bull.queueExists"]
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/:queue/job/:id",
+      "handler": "Bull.findOne",
+      "config": {
+        "policies": ["plugins::bull.queueExists"]
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/:queue/job",
+      "handler": "Bull.create",
+      "config": {
+        "policies": ["plugins::bull.queueExists"]
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/:queue/job/:id",
+      "handler": "Bull.create",
+      "config": {
+        "policies": ["plugins::bull.queueExists"]
+      }
+    },
+    {
+      "method": "DELETE",
+      "path": "/:queue/job/:id",
+      "handler": "Bull.delete",
+      "config": {
+        "policies": ["plugins::bull.queueExists"]
+      }
+    },
+    {
+      "method": "PUT",
+      "path": "/:queue/job/:id/retry",
+      "handler": "Bull.retry",
+      "config": {
+        "policies": ["plugins::bull.queueExists"]
+      }
+    }
+  ]
+}
